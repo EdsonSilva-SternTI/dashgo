@@ -37,13 +37,12 @@ export default NextAuth({
         const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/auth/${account.provider}/callback?access_token=${account?.accessToken}`
         console.log('apiUrl;', apiUrl)
         if (isSignIn) {
-          // const response = await fetch(apiUrl)
-          //   .then((resp) => resp.json())
-          //   .then(function (data) {
-          //     token.jwt = data.jwt;
-          //     token.id = data.user.id;
-          //   })
-
+          const response = await fetch(apiUrl)
+            .then((resp) => resp.json())
+            .then(function (data) {
+              token.jwt = data.jwt;
+              token.id = data.user.id;
+            })
         }
         return {
           ...token,
